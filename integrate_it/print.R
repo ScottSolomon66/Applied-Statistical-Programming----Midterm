@@ -10,10 +10,6 @@
 #' @note This is a simple print function
 #' @examples
 #' 
-#' test_int_est<-new("int_est.Trapezoid, x_values = c(0:10), y_values = c(0:10), estimate = 50)
-#' print(test_int_est)
-#' test_int_est2<-new("int_est.Simpson, x_values = c(0:10), y_values = c(0:10), estimate = 50)
-#' print(test_int_est)
 #' @rdname print
 #' @aliases print
 #' @export
