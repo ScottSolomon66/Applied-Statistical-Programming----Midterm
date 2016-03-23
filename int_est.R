@@ -63,7 +63,7 @@ setClass(Class = "int_est.Simpson",
            estimation = c()
          ))
 #' @export
-setValidity("int_est.Trapezoid", method = function(object){
+setValidity("int_est.Simpson", method = function(object){
   if (length(object@x_values) != length(object@y_values)){
     return("You must have the same number of x and y values")
   }

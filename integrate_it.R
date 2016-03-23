@@ -24,30 +24,31 @@ setGeneric(name = "integrate_it",
              standardGeneric("integrate_it")}
 )
 #' @export
-setMethod(name = "integrate_it",
+setMethod(f = "integrate_it",
           definition = function(x_values, y_values, start_value, end_value, Rule){
             if (Rule == "trap"){
-              
+              n<-length(x_values)-1
+              h<-(end_value-start_value)/n
+              estimate<-h*(y[1]/2 + sum(y[2:(n)]) + y[n+1]/2)
+              trap_estimate<-new("int_est.Trapezoid", x_values = x_values, y_values = y, estimation = estimate)
+              return(trap_estimate)
+            }
+            if (Rule == "simp"){
+              n<-length(x_values)-1
+              h<-(end_value-start_value)/n
+              if (n == 2){
+                estimate<-(h/3)*(y[1]+4*y[2]+y[3])
+              } else{
+                ends<-y[1]+y[n]
+                evens<-which(y_values %% 2 == 0)
+                odds<-which(y_values %% 2 == 1)
+                twos<-2*(sum(y[odds])-(y[1]+y[n]))
+                fours<-4*(sum(y[evens]))
+                total<-ends+twos+fours
+                estimate<-(h/3)*(total)
+                simp_estimate<-new("int_est.Simpson", x_values = x_values, y_values = y, estimation = estimate)
+                return(simp_estimate)
+              }
             }
           }
             )
-
-
-x<-c(1:10)
-y<-c(1:10)
-
-trap_int<-function(x, y, c, d){
-  n<-length(x)
-  in_range<-which(x >= c & x <= d)
-  return(in_range)
-  a<-2*(y[1]+y[3]+y[5]+y[7]+y[9])
-  b<-(y[2]+y[4]+y[6]+y[8]+y[10])
-  h<-(d-c)/n
-  estimate<-h*(a+b)
-  return(estimate)
-}
-
-trap_int(x = c(1:10), y = c(1:10), c = 2, d = 4)
-
-which(x > 2)
-
