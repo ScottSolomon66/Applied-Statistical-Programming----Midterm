@@ -14,11 +14,9 @@
 #' @rdname int_est
 #' @export
 setClass(Class = "int_est",
-         representation = representation(
-           x_values = "numeric",
-           y_values = "numeric",
-           estimation = "numeric"
-         ),
+         slots = c(x_values = "numeric",
+         y_values = "numeric",
+         estimation = "numeric"),
          prototype = prototype(
            x_values = c(),
            y_values = c(),
@@ -33,11 +31,9 @@ setMethod("initialize", "int_est",
 #' @export
 setClass(Class = "int_est.Trapezoid",
          contains = "int_est",
-         representation = representation(
-           x_values = "numeric",
-           y_values = "numeric",
-           estimation = "numeric"
-         ),
+         slots = c(x_values = "numeric",
+                   y_values = "numeric",
+                   estimation = "numeric"),
          prototype = prototype(
            x_values = c(),
            y_values = c(),
@@ -52,11 +48,9 @@ setValidity("int_est.Trapezoid", method = function(object){
 #' @export
 setClass(Class = "int_est.Simpson",
          contains = "int_est",
-         representation = representation(
-           x_values = "numeric",
-           y_values = "numeric",
-           estimation = "numeric"
-         ),
+         slots = c(x_values = "numeric",
+                   y_values = "numeric",
+                   estimation = "numeric"),
          prototype = prototype(
            x_values = c(),
            y_values = c(),
