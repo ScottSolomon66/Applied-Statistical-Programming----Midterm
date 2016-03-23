@@ -75,8 +75,6 @@ setMethod(f = "integrate_it",
                 ## returning the object
                 return(simp_estimate)
               }
-              ## throwing an error if one of the rules isn't typed properyly
-            else return("You did not put a proper rule input")
             }
           }
             )

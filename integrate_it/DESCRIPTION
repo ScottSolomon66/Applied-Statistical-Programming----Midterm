@@ -1,0 +1,12 @@
+Package: integrate_it
+Type: Package
+Title: Estimates definite integrals
+Version: 1.0
+Date: 2016-03-23
+Author: Scott Solomon
+Maintainer: Scott Solomon <scott.solomon@wustl.edu>
+Description: Uses the trapezoid and simpsons rules to estimate integrals
+License: What license is it under?
+Depends:
+    methods
+RoxygenNote: 5.0.1

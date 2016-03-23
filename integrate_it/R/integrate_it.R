@@ -16,6 +16,8 @@
 #' @note This should help calculus 2 students with their WebWork
 #' @examples
 #' 
+#' integrate_it(x_values = c(0:10), y_values = c(0:10), start_value = 0, end_value = 10, Rule = "trap")
+#' integrate_it(x_values = c(0:10), y_values = c(0:10), start_value = 0, end_value = 10, Rule = "simp")
 #' @rdname integrate_it
 #' @aliases integrate_it,ANY-method
 #' @export
@@ -73,8 +75,6 @@ setMethod(f = "integrate_it",
                 ## returning the object
                 return(simp_estimate)
               }
-              ## throwing an error if one of the rules isn't typed properyly
-            else return("You did not put a proper rule input")
             }
           }
             )

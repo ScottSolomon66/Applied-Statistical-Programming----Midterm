@@ -10,6 +10,8 @@
 #' @note This function gives a visual display of the simpson and trapezoid rules
 #' @examples
 #' 
+#' test_int_est<-new("int_est.Trapezoid, x_values = c(0:10), y_values = c(0:10), estimate = 50)
+#' plot(test_int_est)
 #' @rdname plot
 #' @aliases plot
 #' @export
@@ -40,18 +42,19 @@ setMethod(f = "plot",
             }
           })
 #' @export
+## setting the method for plot for the Simpson subclass
 setMethod(f = "plot",
           signature = "int_est.Simpson",
           definition = function(x = NULL, y = x, ...){
+            ## pulling out the x and y values as vectors
             x_values<-x@x_values
             y_values<-x@y_values
             n<-length(x_values)
+            ## creating a parabola function
             parabola<-function(x){
               y<-(-1)*x^2
               return(y)}
-            plot_parabola<-function(fun, from, to){
-              plot(parabola, from, to, add = T)
-            }
+            ## creating an empty plot
             plot(x = NULL,
                  y = NULL,
                  xlab = "x",
@@ -60,51 +63,9 @@ setMethod(f = "plot",
                  xlim = c(min(x@x_values),max(x@x_values)),
                  ylim = c(min(x@y_values),max(x@y_values))
                  )
+            ## an attempt at a loop that should plot parabolas based off the function for all of the x values
             for (i in 1:n){
               plot(parabola, from = x_values[i-1], to = x_values[i], add = T)
             }
           }
 )
-
-
-
-plot(test_int_est4)
-
-x<-c(1:11)
-y<-c(1:11)
-
-curve(parabola(x-(x_values[1])), x_values[1], x_values[2])
-
-?line
-
-test_int_est4<-new("int_est.Simpson", x_values = x, y_values = y, estimation = 50)
-
-?segments
-
-?curve
-
-x<-c(1:5)
-
-
-
-
-
-test_int_est3<-new("int_est.Simpson", x_values = a, y_values = b, estimation = 50)
-
-test_int_est2<-new("int_est.Trapezoid", x_values = a, y_values = b, estimation = 50)
-
-a<-c(0:10)
-b<-sin(a)
-
-?segments
-
-plot(test_int_est2)
-
-x<-c(0:10)
-y<-c(0:10)
-
-test_int_est@x_values
-
-test_int_est<-new("int_est.Trapezoid", x_values = x, y_values = y, estimation = 50)
-str(test_int_est)
-plot(xlim =)
