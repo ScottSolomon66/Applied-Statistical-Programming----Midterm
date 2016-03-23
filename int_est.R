@@ -13,24 +13,33 @@
 #' @aliases int_est-class initialize,  int_est-method 
 #' @rdname int_est
 #' @export
-setClass(Class = "int_est",
-         slots = c(x_values = "numeric",
+## class "int_est"
+## this is the class that the subclasses simpson and trapezoid will be under
+
+setClass(Class = "int_est", # naming the class
+         ## adding slots to the class
+         slots = c(x_values = "numeric", 
          y_values = "numeric",
          estimation = "numeric"),
+         ## adding a blank prototype
          prototype = prototype(
            x_values = c(),
            y_values = c(),
            estimation = c()
          ))
 #' @export
+## setting the initialive method for int_est
 setMethod("initialize", "int_est",
           function(.Object, ...){
             value = callNextMethod()
             return(value)
           })
 #' @export
-setClass(Class = "int_est.Trapezoid",
-         contains = "int_est",
+## setting the subclass for int_est
+## this will be fore trapezoidal estimations
+setClass(Class = "int_est.Trapezoid", # naming the class
+         contains = "int_est", # the class it's under
+         ## adding the slots
          slots = c(x_values = "numeric",
                    y_values = "numeric",
                    estimation = "numeric"),
@@ -40,12 +49,15 @@ setClass(Class = "int_est.Trapezoid",
            estimation = c()
          ))
 #' @export
+## setting validity that the x and y values have the same length
 setValidity("int_est.Trapezoid", method = function(object){
+  ## if the length of the values are different, it throws an error
   if (length(object@x_values) != length(object@y_values)){
     return("You must have the same number of x and y values")
   }
 })
 #' @export
+## repeating the same steps for the simpson approximation class
 setClass(Class = "int_est.Simpson",
          contains = "int_est",
          slots = c(x_values = "numeric",
@@ -57,6 +69,8 @@ setClass(Class = "int_est.Simpson",
            estimation = c()
          ))
 #' @export
+## in this validity function, it not only checks that the number of values are the same
+## but also that the number of observations is odd, which yields an even n
 setValidity("int_est.Simpson", method = function(object){
   if (length(object@x_values) != length(object@y_values)){
     return("You must have the same number of x and y values")

@@ -13,8 +13,11 @@
 #' @rdname print
 #' @aliases print
 #' @export
-setMethod(f = "print",
-          signature = "int_est",
+## setting the method for print
+## since i set it for int_est, it works for both the subclasses
+setMethod(f = "print", # generic
+          signature = "int_est", # adding the signature
           definition = function(x){
+            ## just showing the estimate
             show(x@estimation)
           })
